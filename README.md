@@ -32,4 +32,4 @@ Para obtener el 404 es necesario "borrar" alguna de las palabras de los mensajes
 * Utilicé un lambda de AWS y un API Gateway.
 * No llegué a hacer lo que pedía el nivel 3. 
 * No logré hacer andar bien el logger así que lo saqué. Había usado algo así: private static final Logger log = LoggerFactory.getLogger(ClaseALaQuePertenecía.class);
-* Adjunto un doc con capturas de la API y su configuración
+* Adjunto un pdf con capturas de la API y su configuración, en la carpeta resources del proyecto
