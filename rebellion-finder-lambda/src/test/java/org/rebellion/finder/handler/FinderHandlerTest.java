@@ -8,8 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.rebellion.finder.model.FinderRequest;
 import org.rebellion.finder.model.FinderResponse;
-import org.rebellion.finder.model.Satellite;
-import org.rebellion.finder.utils.error.BaseException;
+import org.rebellion.global.model.Satellite;
+import org.rebellion.global.model.error.BaseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ public class FinderHandlerTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void handleRequest_whenWrongMessage() throws BaseException{
+    public void handleRequest_whenWrongMessage() {
         handler.handleRequest(getSatellites("Not OK"), context);
     }
 

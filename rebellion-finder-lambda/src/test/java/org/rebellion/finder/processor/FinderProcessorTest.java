@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.rebellion.finder.model.FinderRequest;
 import org.rebellion.finder.model.FinderResponse;
-import org.rebellion.finder.model.Satellite;
-import org.rebellion.finder.utils.error.BaseException;
+import org.rebellion.global.model.Satellite;
+import org.rebellion.global.model.error.BaseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,17 +38,17 @@ public class FinderProcessorTest {
 
 
     private FinderRequest getSatellites() {
-        List<Satellite> list = new ArrayList<Satellite>();
+        List<Satellite> list = new ArrayList<>();
         list.add(new Satellite().withName("Kenobi")
-                .withDistance(new Double(100))
+                .withDistance(100.0)
                 .withReceivedMessage(Arrays.asList("Este", "", "", "mensaje", "")));
 
         list.add(new Satellite().withName("Skywalker")
-                .withDistance(new Double(115.5))
+                .withDistance(115.5)
                 .withReceivedMessage(Arrays.asList("", "es", "", "", "secreto")));
 
         list.add(new Satellite().withName("Sato")
-                .withDistance(new Double(142.7))
+                .withDistance(142.7)
                 .withReceivedMessage(Arrays.asList("Este", "", "un", "", "")));
 
         FinderRequest response = new FinderRequest();

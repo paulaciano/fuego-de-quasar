@@ -1,25 +1,26 @@
 package org.rebellion.finder.processor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.rebellion.finder.model.FinderRequest;
 import org.rebellion.finder.model.FinderResponse;
-import org.rebellion.finder.model.Satellite;
 import org.rebellion.finder.utils.FinderBaseUtils;
-import org.rebellion.finder.utils.error.BaseException;
+import org.rebellion.global.model.Satellite;
+import org.rebellion.global.model.error.BaseException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FinderProcessor {
+    private static final Logger logger = LogManager.getLogger(FinderProcessor.class);
 
     private List<Double> distances;
     private List<List<String>> receivedMessages;
     private FinderBaseUtils utils;
 
-//    private Position positionKenobi = new Position().withX(-500.).withY(-200.);
-//    private Position positionSkywalker = new Position().withX(100.).withY(-100.);
-//    private Position positionSato = new Position().withX(500.).withY(100.);
-
     public FinderResponse process(FinderRequest inputList) throws BaseException {
+        logger.info("Starting process. Request: {}", inputList );
+
         processInput(inputList);
         utils = new FinderBaseUtils();
 
@@ -28,6 +29,7 @@ public class FinderProcessor {
         response.setPosition(utils.findEmisorPosition(distances));
         response.setMessage(utils.decodeMessage(receivedMessages));
 
+        logger.info("Ending process. Response: {}", response);
         return response;
     }
 

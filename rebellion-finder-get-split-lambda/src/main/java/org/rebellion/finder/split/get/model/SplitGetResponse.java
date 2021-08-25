@@ -1,11 +1,10 @@
-package org.rebellion.finder.model;
+package org.rebellion.finder.split.get.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
 import org.rebellion.global.model.Position;
 
-public class FinderResponse {
+public class SplitGetResponse {
 
     private Position position;
     private String message;
