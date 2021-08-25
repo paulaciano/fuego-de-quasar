@@ -4,14 +4,18 @@ import com.lemmingapex.trilateration.NonLinearLeastSquaresSolver;
 import com.lemmingapex.trilateration.TrilaterationFunction;
 import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer;
 import org.apache.commons.math3.util.Precision;
-import org.rebellion.finder.model.Position;
-import org.rebellion.finder.utils.error.BadlyReceivedMessageException;
-import org.rebellion.finder.utils.error.EmisorPositionNotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.rebellion.global.model.Position;
+import org.rebellion.global.model.error.BadlyReceivedMessageException;
+import org.rebellion.global.model.error.EmisorPositionNotFoundException;
+import org.rebellion.global.model.error.ErrorCauses;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FinderBaseUtils {
+    private static final Logger logger = LogManager.getLogger(FinderBaseUtils.class);
 
     private double[][] localPositions;
     private double[] localDistances;
@@ -21,17 +25,19 @@ public class FinderBaseUtils {
     }
 
     public Position findEmisorPosition(List<Double> distances) throws EmisorPositionNotFoundException {
-        setDistances(distances);
 
+        setDistances(distances);
         try {
 
             TrilaterationFunction function = new TrilaterationFunction(localPositions, localDistances);
             NonLinearLeastSquaresSolver solver = new NonLinearLeastSquaresSolver(function, new LevenbergMarquardtOptimizer());
             double[] response = solver.solve().getPoint().toArray();
+
             int PRECISION_SCALE = 2;
             return  new Position().withX(Precision.round(response[0], PRECISION_SCALE)).withY(Precision.round(response[1], PRECISION_SCALE));
 
         } catch (Exception ex) {
+            logger.error(ex.getStackTrace());
             throw new EmisorPositionNotFoundException();
         }
     }
@@ -41,28 +47,30 @@ public class FinderBaseUtils {
 
         for (List<String> message : receivedMessages) {
 
-            if(response.size() == 0 ) {
+            if(response.size() == 0) {
                 response = message;
                 continue;
             }
 
+            if (message.size() != response.size()) {
+                logger.error(ErrorCauses.RECEIVED_MESSAGES_DO_NOT_MATCH);
+                throw new BadlyReceivedMessageException();
+            }
+
             for (int i = 0; i < message.size(); i++) {
 
-                if (response.get(i).isEmpty()) {
-                    response.set(i, message.get(i));
-
-                } else {
-                    if (!message.get(i).isEmpty() && !response.get(i).equals(message.get(i))) {
-                        throw new BadlyReceivedMessageException();
-                    } //Si son iguales no necesito hacer nada
-                }
+                if (response.get(i).trim().isEmpty()) {
+                    response.set(i, message.get(i).trim());
+                } else if (!message.get(i).trim().isEmpty() && !response.get(i).equals(message.get(i).trim())) {
+                    logger.error(ErrorCauses.RECEIVED_MESSAGES_DO_NOT_MATCH);
+                    throw new BadlyReceivedMessageException();
+                }// Si estoy recibiendo la misma palabra que ya está guardada no necesito hacer nada
             }
         }
 
         if (response.stream().anyMatch(String::isEmpty)) throw new BadlyReceivedMessageException();
 
         return String.join(" ", response);
-
     }
 
     private void setDistances(List<Double> distances) {
@@ -73,6 +81,7 @@ public class FinderBaseUtils {
     }
 
     private void setLocalPositions() {
+        logger.debug("Setting local positions");
         this.localPositions = new double[3][2];
 
         this.localPositions[0][0] = -500.;

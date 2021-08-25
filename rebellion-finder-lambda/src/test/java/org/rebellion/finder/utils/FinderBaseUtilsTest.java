@@ -4,9 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.rebellion.finder.model.Position;
-import org.rebellion.finder.utils.error.BadlyReceivedMessageException;
-import org.rebellion.finder.utils.error.EmisorPositionNotFoundException;
+import org.rebellion.global.model.error.BadlyReceivedMessageException;
+import org.rebellion.global.model.Position;
+import org.rebellion.global.model.error.EmisorPositionNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,7 +59,7 @@ public class FinderBaseUtilsTest {
     }
 
     private List<Double> getDistancesOk(){
-        List<Double> list = new ArrayList<Double>();
+        List<Double> list = new ArrayList<>();
         list.add(100d);
         list.add(115.5);
         list.add(142.7);
@@ -67,7 +67,7 @@ public class FinderBaseUtilsTest {
     }
 
     private List<Double> getDistancesWrongly(){
-        List<Double> list = new ArrayList<Double>();
+        List<Double> list = new ArrayList<>();
         list.add(10d);
         list.add(10d);
         list.add(10d);
