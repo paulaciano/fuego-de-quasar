@@ -41,7 +41,7 @@ public class SplitAddProcessorTest {
     private SplitAddRequest getSatelliteInputOk() {
         return new SplitAddRequest().withName("Kenobi")
                     .withDistance(100.)
-                    .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                    .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 
 }

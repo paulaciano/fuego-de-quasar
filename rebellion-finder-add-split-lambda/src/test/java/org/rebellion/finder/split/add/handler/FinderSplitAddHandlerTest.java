@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.rebellion.finder.split.add.model.SplitAddRequest;
 import org.rebellion.finder.split.add.processor.SplitAddProcessor;
-import org.rebellion.global.model.error.BaseException;
 
 import java.util.Arrays;
 
@@ -53,17 +52,17 @@ public class FinderSplitAddHandlerTest {
     private SplitAddRequest getSatelliteInputOk() {
          return new SplitAddRequest().withName("Kenobi")
                     .withDistance(100.)
-                    .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                    .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 
     private SplitAddRequest getSatelliteInputMissingField() {
         return new SplitAddRequest().withName("Kenobi")
-                .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 
     private SplitAddRequest getSatelliteInputEmptyField() {
         return new SplitAddRequest().withName("")
                 .withDistance(100.)
-                .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 }

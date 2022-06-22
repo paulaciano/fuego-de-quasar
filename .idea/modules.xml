@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fuego-de-quasar.iml" filepath="$PROJECT_DIR$/fuego-de-quasar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebellion-finder-add-split-lambda/rebellion-finder-add-split-lambda.iml" filepath="$PROJECT_DIR$/rebellion-finder-add-split-lambda/rebellion-finder-add-split-lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebellion-finder-get-split-lambda/rebellion-finder-get-split-lambda.iml" filepath="$PROJECT_DIR$/rebellion-finder-get-split-lambda/rebellion-finder-get-split-lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebellion-finder-global-model/rebellion-finder-global-model.iml" filepath="$PROJECT_DIR$/rebellion-finder-global-model/rebellion-finder-global-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/rebellion-finder-lambda/rebellion-finder-lambda.iml" filepath="$PROJECT_DIR$/rebellion-finder-lambda/rebellion-finder-lambda.iml" />
     </modules>
   </component>

@@ -1,48 +1,51 @@
 # fuego-de-quasar by Paula
 
-Se puede ejecutar el programa con los siguientes datos: 
+You can test the API using the following data: 
 
 * Api Url:  https://geyc73n98h.execute-api.us-east-2.amazonaws.com/default/topsecret
-* Método: POST
+* Method: POST
 * Body:
 {
   "satellites": [
     {
       "name": "kenobi",
       "distance": 100.0,
-      "message": [ "este", "", "", "mensaje", "" ]
+      "message": [ "this", "", "", "secret", "" ]
     },
     {
       "name": "skywalker",
       "distance": 115.5,
-      "message": [ "", "es", "", "", "secreto" ]
+      "message": [ "", "is", "", "", "message" ]
     },
     {
       "name": "sato",
       "distance": 142.7,
-      "message": [ "este", "", "un", "", "" ]
+      "message": [ "this", "", "a", "", "" ]
     }
   ]
 }
 
-Para obtener el 404 es necesario "borrar" alguna de las palabras de los mensajes. No logré que falle por no encontrar coordenadas, las encuentra siempre.
-Como las coordenadas conocidas de los satélites están preseteadas, es importante ingresarlos en el mismo orden del ejemplo. Se matchean en ese orden con su ubicación hardcodeada.
+To get a 404, one of the words should be replaced by a "". I could not make it failed with a "No location found", it is always found.
+Considering all the satellites locations are hardcoded, it is required to set them in the order you see in the example. They are matched in that order.
 
-Los endpoints pedidos en el nivel 3 son: 
-* Api Url: https://geyc73n98h.execute-api.us-east-2.amazonaws.com/default/topsecret_split/{nombre de la nave}
-* Método: POST
+The endpoints of the level 3 are:
+* Api Url: https://geyc73n98h.execute-api.us-east-2.amazonaws.com/default/topsecret_split/{nombre_de_la_nave}
+* Method: POST
 * Body: 
 {
     "distance": 143.7,
-    "message": [ "este", "", "un", "", ""]
+    "message": [ "this", "", "a", "", ""]
 }
-
+<br><br>
 * Api Url: https://geyc73n98h.execute-api.us-east-2.amazonaws.com/default/topsecret_split
-* Método: GET
+* Method: GET
 
-Como las posiciones están hardcodeadas para los tres satélites del ejemplo, deben estar esas tres guardadas para que funcione todo el proceso. A medida que se cargan nuevas distancias y mensajes se pisan sobre el mismo nombre de satélite. Se pueden cargar otras naves con otros nombres y quedan guardadas, pero no se usan para encontrar la ubicación de la nave emisora del mensaje.
+Considering the location of the three satellites from the example  are hardcoded, they have to be stored in order for the process to work properly. 
+When new distances and messages are added, they overwrite the existing data for that satellite.
+More satellites with different names can be added, they will be stored but they will never be considered when looking for the transmission location.
 
-<b>Notas</b>
-* Para hallar las coordenadas de la nave emisora del mensaje utilicé una librería que resuelve problemas de trilateración. Siempre encuentra una respuesta con ciertos parámetros de proximidad que no tuve en cuenta en mi algoritmo. Dejo el link a la librería: https://github.com/lemmingapex/trilateration
-* Los servicios de AWS que utilicé fueron: tres lambdas, una base de datos dynamo y un API Gateway.
-* El lambda que se ejecuta en el GET del topsecret_split, recupera los datos de la base y arma el request para el lambda que busca la posición y el mensaje en el endpoint /topsecret
+
+<b>Notes</b>
+* In order to find the transmission location I used a library that solves trilateration problems. It always finds an answer with an error that I have ignored in my procedure. This is the library location: https://github.com/lemmingapex/trilateration
+* I used three AWS lambdas, a Dynamo db and an API Gateway.
+* The lambda that runs the topsecret_split GET, gets the data from the dynamo db and builds the request that looks for the location and message in the /topsecret endpoint.

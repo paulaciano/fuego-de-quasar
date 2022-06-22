@@ -9,7 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.rebellion.finder.model.FinderRequest;
 import org.rebellion.finder.model.FinderResponse;
 import org.rebellion.global.model.Satellite;
-import org.rebellion.global.model.error.BaseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +36,7 @@ public class FinderHandlerTest {
 
         assertEquals(new Double(-58.32), response.getPosition().getX());
         assertEquals(new Double(-69.55), response.getPosition().getY());
-        assertEquals("Este es un mensaje secreto", response.getMessage());
+        assertEquals("This is a secret message", response.getMessage());
 
     }
 
@@ -50,20 +49,20 @@ public class FinderHandlerTest {
         List<Satellite> list = new ArrayList<>();
         list.add(new Satellite().withName("Kenobi")
                 .withDistance(100.)
-                .withReceivedMessage(Arrays.asList("Este", "", "", "mensaje", "")));
+                .withReceivedMessage(Arrays.asList("This", "", "", "secret", "")));
 
         if ("OK".equals(status)) {
             list.add(new Satellite().withName("Skywalker")
                     .withDistance(115.5)
-                    .withReceivedMessage(Arrays.asList("", "es", "", "", "secreto")));
+                    .withReceivedMessage(Arrays.asList("", "is", "", "", "message")));
         } else {
             list.add(new Satellite().withName("Skywalker")
                     .withDistance(115.5)
-                    .withReceivedMessage(Arrays.asList("", "es", "", "", "")));
+                    .withReceivedMessage(Arrays.asList("", "is", "", "", "")));
         }
         list.add(new Satellite().withName("Sato")
                 .withDistance(142.7)
-                .withReceivedMessage(Arrays.asList("Este", "", "un", "", "")));
+                .withReceivedMessage(Arrays.asList("This", "", "a", "", "")));
 
         FinderRequest response = new FinderRequest();
         response.setSatellites(list);
