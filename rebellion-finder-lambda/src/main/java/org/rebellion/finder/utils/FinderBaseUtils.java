@@ -64,7 +64,7 @@ public class FinderBaseUtils {
                 } else if (!message.get(i).trim().isEmpty() && !response.get(i).equals(message.get(i).trim())) {
                     logger.error(ErrorCauses.RECEIVED_MESSAGES_DO_NOT_MATCH);
                     throw new BadlyReceivedMessageException();
-                }// Si estoy recibiendo la misma palabra que ya está guardada no necesito hacer nada
+                }// If I receive the same word is already stored, I don't do anything.
             }
         }
 

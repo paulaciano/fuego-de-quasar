@@ -53,17 +53,17 @@ public class FinderSplitAddHandlerTest {
     private SplitAddRequest getSatelliteInputOk() {
          return new SplitAddRequest().withName("Kenobi")
                     .withDistance(100.)
-                    .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                    .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 
     private SplitAddRequest getSatelliteInputMissingField() {
         return new SplitAddRequest().withName("Kenobi")
-                .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 
     private SplitAddRequest getSatelliteInputEmptyField() {
         return new SplitAddRequest().withName("")
                 .withDistance(100.)
-                .withMessage(Arrays.asList("Este", "", "", "mensaje", ""));
+                .withMessage(Arrays.asList("This", "", "", "secret", ""));
     }
 }

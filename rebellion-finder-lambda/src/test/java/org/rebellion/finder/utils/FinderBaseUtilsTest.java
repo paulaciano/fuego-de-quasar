@@ -44,7 +44,7 @@ public class FinderBaseUtilsTest {
     public void decodeMessage_whenOk() throws BadlyReceivedMessageException {
         String message = utils.decodeMessage(getReceivedMessagesOk());
 
-        assertEquals("Este es un mensaje secreto", message);
+        assertEquals("This is a secret message", message);
 
     }
 
@@ -77,27 +77,27 @@ public class FinderBaseUtilsTest {
     private List<List<String>> getReceivedMessagesOk(){
         List<List<String>> messagesList = new ArrayList<>();
 
-        messagesList.add(Arrays.asList("Este", "", "", "mensaje", ""));
-        messagesList.add(Arrays.asList("", "es", "", "", "secreto"));
-        messagesList.add(Arrays.asList("Este", "", "un", "", ""));
+        messagesList.add(Arrays.asList("This", "", "", "secret", ""));
+        messagesList.add(Arrays.asList("", "is", "", "", "message"));
+        messagesList.add(Arrays.asList("This", "", "a", "", ""));
         return messagesList;
     }
 
     private List<List<String>> getReceivedMessagesIncomplete(){
         List<List<String>> messagesList = new ArrayList<>();
 
-        messagesList.add(Arrays.asList("Este", "", "", "mensaje", ""));
-        messagesList.add(Arrays.asList("", "es", "", "", ""));
-        messagesList.add(Arrays.asList("Este", "", "un", "", ""));
+        messagesList.add(Arrays.asList("This", "", "", "secret", ""));
+        messagesList.add(Arrays.asList("", "is", "", "", ""));
+        messagesList.add(Arrays.asList("This", "", "a", "", ""));
         return messagesList;
     }
 
     private List<List<String>> getReceivedMessagesMerged(){
         List<List<String>> messagesList = new ArrayList<>();
 
-        messagesList.add(Arrays.asList("Este", "", "", "mensaje", ""));
-        messagesList.add(Arrays.asList("", "es", "", "", "secreto"));
-        messagesList.add(Arrays.asList("Este", "", "un", "", "mensaje"));
+        messagesList.add(Arrays.asList("This", "", "", "secret", ""));
+        messagesList.add(Arrays.asList("", "is", "", "", "message"));
+        messagesList.add(Arrays.asList("This", "", "a", "", "secret"));
         return messagesList;
     }
 }

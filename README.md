@@ -1,35 +1,35 @@
 # fuego-de-quasar by Paula
 
-Se puede ejecutar el programa con los siguientes datos: 
+You can use the API using the following data: 
 
 * Api Url:  https://geyc73n98h.execute-api.us-east-2.amazonaws.com/default/topsecret <br>
-* Método: POST
+* Method: POST
 * Body:
 {
   "satellites": [
     {
       "name": "kenobi",
       "distance": 100.0,
-      "message": [ "este", "", "", "mensaje", "" ]
+      "message": [ "this", "", "", "secret", "" ]
     },
     {
       "name": "skywalker",
       "distance": 115.5,
-      "message": [ "", "es", "", "", "secreto" ]
+      "message": [ "", "is", "", "", "message" ]
     },
     {
       "name": "sato",
       "distance": 142.7,
-      "message": [ "este", "", "un", "", "" ]
+      "message": [ "this", "", "a", "", "" ]
     }
   ]
 }
 
-Para obtener el 404 es necesario "borrar" alguna de las palabras de los mensajes. No logré que falle por no encontrar coordenadas, las encuentra siempre.
+In order to get a 404, it is required to delete any of the words of the messages. It always gives an answer, I could not make it fail by not finding the coordinates.
 
-<b>Notas</b>
-* Para hallar las coordenadas de la nave emisora del mensaje utilicé una librería que resuelve problemas de trilateración. Siempre encuentra una respuesta con ciertos parámetros de proximidad que no tuve en cuenta en mi algoritmo. Dejo el link a la librería: https://github.com/lemmingapex/trilateration
-* Utilicé un lambda de AWS y un API Gateway.
-* No llegué a hacer lo que pedía el nivel 3. 
-* No logré hacer andar bien el logger así que lo saqué. Había usado algo así: private static final Logger log = LoggerFactory.getLogger(ClaseALaQuePertenecía.class);
-* Adjunto un doc con capturas de la API y su configuración
+<b>Notes</b>
+* In order to find the transmission coordinates, I use a library (com.lemmingapex.trilateration) to solve trilateration problems. 
+* It always finds an answer with a centroid and an error (that I have just ignored in my solution). Library: https://github.com/lemmingapex/trilateration
+* I needed an AWS lambda and an API Gateway.
+* 
+* There is a doc with screenshots of the API configuration.

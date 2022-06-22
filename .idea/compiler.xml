@@ -6,12 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rebellion-finder-lambda (1)" />
+        <module name="rebellion-finder-add-split-lambda" />
+        <module name="rebellion-finder-get-split-lambda" />
         <module name="rebellion-finder-lambda" />
+        <module name="rebellion-finder-global-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fuego-de-quasar" target="1.8" />
+      <module name="rebellion-finder-add-split-lambda" target="1.8" />
+      <module name="rebellion-finder-get-split-lambda" target="1.8" />
+      <module name="rebellion-finder-global-model" target="1.8" />
       <module name="rebellion-finder-lambda" target="1.8" />
+      <module name="rebellion-finder-lambda (1)" target="1.8" />
+      <module name="rebellion-finder-split-lambda" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
